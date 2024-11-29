@@ -1,0 +1,14 @@
+
+POST   http://localhost:8000/api/insert
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcwMTYyODkyOSwiZXhwIjoxNzAxNjI4OTQ5fQ.BZX1WPFNKDp3DiNFJvUYeO2WGB2C3GkzEoa-quVN8J0
+Content-Type: application/json
+
+
+{
+  "name":"Johnpaul",
+    "email":"developerjohnpaul@gmail.com",
+    "password":"1234"
+  }
+
+###
+GET    http://localhost:8000/api/retrieve
