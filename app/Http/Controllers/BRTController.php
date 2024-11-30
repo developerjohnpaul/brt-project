@@ -1,17 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
+use App\Events\BRTNotification;
 use Illuminate\Http\Request;
 use App\Models\BRT;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class BRTController extends Controller
 {
     // Store BRT
     public function store(Request $request)
     {
+        
         \Log::info('Store method accessed.');
         \Log::info('Authenticated User ID:', [Auth::id()]);
         // Capture payload
@@ -39,7 +45,13 @@ class BRTController extends Controller
                 'reserved_amount' => $payload['reserved_amount'],
                 'status' => $payload['status'],
             ]);
-            \Log::info('BRT record created successfully.');
+            
+            event(new BRTNotification(['type' => "create", 'data' => $brt]));
+            \Log::error('BRT record created successfully:', [
+                'brt_code' => $payload['brt_code'],
+                'reserved_amount' => $payload['reserved_amount'],
+                'status' => $payload['status']
+            ]);
         } catch (\Exception $e) {
             \Log::error('Error creating BRT record:', ['message' => $e->getMessage()]);
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
@@ -93,7 +105,7 @@ class BRTController extends Controller
             'reserved_amount' => $payload['reserved_amount'],
             'status' => $payload['status'],
         ]);
-
+        event(new BRTNotification(['type' => "update", 'data' => $brt]));
         return response()->json(['success' => true, 'data' => $brt]);
     }
 
@@ -102,7 +114,7 @@ class BRTController extends Controller
     {
         $brt = BRT::findOrFail($id);
         $brt->delete();
-
+        event(new BRTNotification(['type' => "delete", 'data' => $brt]));
         return response()->json(['success' => true, 'message' => 'BRT deleted']);
     }
 }
