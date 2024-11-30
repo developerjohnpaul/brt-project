@@ -35,10 +35,9 @@ class CheckAuthToken
             return $next($request);
 
         } catch (JWTException $e) {
-            // If token is missing or invalid
+            // return error If token is missing or invalid
             return response()->json(['error' => 'Invalid or expired token'], 401);
         } catch (\Exception $e) {
-            // Handle any other unexpected errors
             return response()->json(['error' => 'Something went wrong'], 500);
         }
     }

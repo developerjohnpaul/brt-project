@@ -17,23 +17,17 @@ class BRTController extends Controller
     // Store BRT
     public function store(Request $request)
     {
-        
-        \Log::info('Store method accessed.');
-        \Log::info('Authenticated User ID:', [Auth::id()]);
         // Capture payload
         $payload = $request->json()->all();
-        \Log::info('Payload:', $payload);
-    
+
         // Validate payload
         $validator = Validator::make($payload, [
             'brt_code' => 'required|string|unique:brts,brt_code',
             'reserved_amount' => 'required|numeric',
             'status' => 'required|in:active,expired',
         ]);
-        \Log::info('Validation completed.');
     
         if ($validator->fails()) {
-            \Log::error('Validation errors:', $validator->errors()->toArray());
             return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
         }
     
@@ -45,15 +39,9 @@ class BRTController extends Controller
                 'reserved_amount' => $payload['reserved_amount'],
                 'status' => $payload['status'],
             ]);
-            
+            // Broadcast the event to all users in real time
             event(new BRTNotification(['type' => "create", 'data' => $brt]));
-            \Log::error('BRT record created successfully:', [
-                'brt_code' => $payload['brt_code'],
-                'reserved_amount' => $payload['reserved_amount'],
-                'status' => $payload['status']
-            ]);
         } catch (\Exception $e) {
-            \Log::error('Error creating BRT record:', ['message' => $e->getMessage()]);
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
         }
     
@@ -74,7 +62,6 @@ class BRTController extends Controller
         try {
             $brt = BRT::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            \Log::error('BRT record not found for ID:', ['id' => $id]);
             return response()->json(['error' => 'Record not found'], 404);
         }
         return response()->json(['success' => true, 'data' => $brt]);
@@ -84,8 +71,6 @@ class BRTController extends Controller
     public function update(Request $request, $id)
     {
        $payload = $request->json()->all();
-       \Log::info('Update payload received:', ['payload' => $payload]);
-
         $validator = Validator::make($payload, [
             'reserved_amount' => 'required|numeric',
             'status' => 'required|in:active,expired',
@@ -105,6 +90,7 @@ class BRTController extends Controller
             'reserved_amount' => $payload['reserved_amount'],
             'status' => $payload['status'],
         ]);
+        // Broadcast the event to all users in real time
         event(new BRTNotification(['type' => "update", 'data' => $brt]));
         return response()->json(['success' => true, 'data' => $brt]);
     }
@@ -114,6 +100,7 @@ class BRTController extends Controller
     {
         $brt = BRT::findOrFail($id);
         $brt->delete();
+        // Broadcast the event to all users in real time
         event(new BRTNotification(['type' => "delete", 'data' => $brt]));
         return response()->json(['success' => true, 'message' => 'BRT deleted']);
     }
