@@ -1,13 +1,19 @@
+POST   http://localhost:8000/api/register
 
-POST   http://localhost:8000/api/insert
-Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcwMTYyODkyOSwiZXhwIjoxNzAxNjI4OTQ5fQ.BZX1WPFNKDp3DiNFJvUYeO2WGB2C3GkzEoa-quVN8J0
-Content-Type: application/json
-
+ {
+  "name":"Johnpauluh",
+    "email":"bennypen@gmail.com",
+    "password":"1234567899"
+  }
+###
+POST  http://localhost:8000/api/loginByToken
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzMyOTQ4NzA1LCJleHAiOjE3MzI5NTIzMDUsIm5iZiI6MTczMjk0ODcwNSwianRpIjoiSE43ejBDT1dXbFBDMWpZTSIsInN1YiI6IjEzIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.78nvfKjue1bGi6aNDL_OoKP0Lgms3NndG-Z9QJq7Gvk
+###
+POST   http://localhost:8000/api/login
 
 {
-  "name":"Johnpaul",
-    "email":"developerjohnpaul@gmail.com",
-    "password":"1234"
+    "email":"bennypen@gmail.com",
+    "password":"1234567899"
   }
 
 ###

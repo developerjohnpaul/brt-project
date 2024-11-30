@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\DB; // Import DB facade
 
 class GreetController extends Controller
 {
-    public function greet()
-    {
-        $my_var = 'Hello, welcome to my API!';
-        return response()->json(['message' => $my_var]);
-    }
+  
     
     public function dontGreet()
     {
@@ -29,9 +25,5 @@ class GreetController extends Controller
         return response()->json(['message' => "done"]);
     }
 
-    public function retrieve()
-    {
-        $users = DB::table('users')->get();
-        return response()->json(['users' => $users]); // Better structure
-    }
+  
 }
