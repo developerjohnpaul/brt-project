@@ -2,19 +2,51 @@ POST   http://localhost:8000/api/register
 
  {
   "name":"Johnpauluh",
-    "email":"bennypen@gmail.com",
-    "password":"1234567899"
+    "email":"bennhhypen@gmail.com",
+    "password":"1234j567899"
   }
 ###
 POST  http://localhost:8000/api/loginByToken
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzMyOTQ4NzA1LCJleHAiOjE3MzI5NTIzMDUsIm5iZiI6MTczMjk0ODcwNSwianRpIjoiSE43ejBDT1dXbFBDMWpZTSIsInN1YiI6IjEzIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.78nvfKjue1bGi6aNDL_OoKP0Lgms3NndG-Z9QJq7Gvk
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzMyOTc4MTgyLCJleHAiOjE3MzI5ODE3ODIsIm5iZiI6MTczMjk3ODE4MiwianRpIjoidGhjQ3hweTJSOHdGMjZ3TiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FrZSrOZMchWbkWQCQf34khxNhzbsKciUnPn9IG7hGRs
 ###
 POST   http://localhost:8000/api/login
 
 {
-    "email":"bennypen@gmail.com",
-    "password":"1234567899"
+    "email":"bennhhypen@gmail.com",
+    "password":"1234j567899"
   }
 
 ###
-GET    http://localhost:8000/api/retrieve
+POST   http://localhost:8000/api/brts
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzMyOTc4MTgyLCJleHAiOjE3MzI5ODE3ODIsIm5iZiI6MTczMjk3ODE4MiwianRpIjoidGhjQ3hweTJSOHdGMjZ3TiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FrZSrOZMchWbkWQCQf34khxNhzbsKciUnPn9IG7hGRs
+
+{
+  "brt_code": "BRkT12mjk3h4hbhh58",
+  "reserved_amount": 100.50,
+  "status": "active"
+}
+
+
+###
+GET  http://localhost:8000/api/brts 
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzMyOTc4MTgyLCJleHAiOjE3MzI5ODE3ODIsIm5iZiI6MTczMjk3ODE4MiwianRpIjoidGhjQ3hweTJSOHdGMjZ3TiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FrZSrOZMchWbkWQCQf34khxNhzbsKciUnPn9IG7hGRs
+
+###
+GET  http://localhost:8000/api/brts/6
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzMyOTc4MTgyLCJleHAiOjE3MzI5ODE3ODIsIm5iZiI6MTczMjk3ODE4MiwianRpIjoidGhjQ3hweTJSOHdGMjZ3TiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FrZSrOZMchWbkWQCQf34khxNhzbsKciUnPn9IG7hGRs
+
+
+
+###
+PUT  http://localhost:8000/api/brts/6
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzMyOTc4MTgyLCJleHAiOjE3MzI5ODE3ODIsIm5iZiI6MTczMjk3ODE4MiwianRpIjoidGhjQ3hweTJSOHdGMjZ3TiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FrZSrOZMchWbkWQCQf34khxNhzbsKciUnPn9IG7hGRs
+
+{
+  "reserved_amount": 10440.50,
+  "status": "active"
+}
+
+###
+DELETE   http://localhost:8000/api/brts/6
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzMyOTc4MTgyLCJleHAiOjE3MzI5ODE3ODIsIm5iZiI6MTczMjk3ODE4MiwianRpIjoidGhjQ3hweTJSOHdGMjZ3TiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FrZSrOZMchWbkWQCQf34khxNhzbsKciUnPn9IG7hGRs
+
